@@ -182,9 +182,32 @@ for ($i = 1; $i <= 5; $i++) {
     }
 }
 
+function should_veto_pick($data, $i) {
+  return $data['champ_pick_' . $i] != 0 && (
+    $data['champ_mode'] == 0 || // Any players picks are vetoed
+    $data['champ_mode'] == 1 && // Own picks are vetoed
+    ($_GET['player'] == $data['player1']
+      ? /* player1's own picks */ ( $i == 2 || $i == 3 || $i == 6 || $i == 7 || $i == 10 )
+      : /* player2's own picks */ ( $i == 1 || $i == 4 || $i == 5 || $i == 8 || $i == 9  )
+    )
+  );
+}
+
 for ($i = 1; $i <= 10; $i++) {
+    //if (should_veto_pick($i)) {
     if ($data['champ_pick_' . $i] != 0) {
         $CHAMPIONS_VETO['Pick'][$data['champ_pick_' . $i]] = $CHAMPIONS[$data['champ_pick_' . $i]];
+    }
+}
+
+for ($i = 1; $i <= 10; $i++) {
+    if (should_veto_pick($data, $i)) {
+        $CHAMPIONS_VETO['Ban'][$data['champ_pick_' . $i]] = $CHAMPIONS[$data['champ_pick_' . $i]];
+    }
+}
+
+for ($i = 1; $i <= 10; $i++) {
+    if (should_veto_pick($data, $i)) {
         unset($CHAMPIONS[$data['champ_pick_' . $i]]);
     }
 }

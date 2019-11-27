@@ -112,6 +112,12 @@ app.controller('HomeController', ['$rootScope', '$cookieStore', '$scope', '$loca
 		5: 'Best of 5'
 	};
 
+	$scope.optionsChampMode = {
+		0: 'by only one of the players',
+		1: 'once by each player',
+		2: 'any number of times'
+	};
+
 	$scope.getStatistics = function() {
 		$http.get('api/statistics.php').then(
 			function(response) {
@@ -145,7 +151,7 @@ app.controller('HomeController', ['$rootScope', '$cookieStore', '$scope', '$loca
 			$scope.formData.player2 = youPlayer;
 		}
 
-		$http.post('api/create.php', { player1: $scope.formData.player1, player2: $scope.formData.player2, bestof: $scope.formData.bestof, pwd: $scope.formData.pwd }).then(
+		$http.post('api/create.php', { player1: $scope.formData.player1, player2: $scope.formData.player2, bestof: $scope.formData.bestof, champ_mode: $scope.formData.champ_mode, pwd: $scope.formData.pwd }).then(
 			function(response) {
 				console.log(response.data);
 				if (response.data.success != null) {
