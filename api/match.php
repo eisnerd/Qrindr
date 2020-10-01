@@ -12,7 +12,7 @@ if (!isset($_POST['uuid'])) exit;
 if (!is_int($_POST['id']) || !is_int($_POST['pick'])) exit;
 if (isset($_POST['pick']) && !empty($_POST['pick'])) {
     if ($_POST['type'] == "map")
-        if ($_POST['pick'] < 1 || $_POST['pick'] > 7) exit;
+        if ($_POST['pick'] < 1 || $_POST['pick'] > 9) exit;
     elseif ($_POST['type'] == "champ")
         if ($_POST['pick'] < 1 || $_POST['pick'] > 16) exit;
 } else exit;

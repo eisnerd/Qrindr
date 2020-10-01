@@ -39,6 +39,16 @@ $MAPS = [
         'Name'          => 'Vale of Pnath',
         'Abbreviation'  => 'Vale'
     ],
+    8 => [
+        'ID'            => 8,
+        'Name'          => 'Tower of Koth',
+        'Abbreviation'  => 'Koth'
+    ],
+    9 => [
+        'ID'            => 9,
+        'Name'          => 'Deep Embrace',
+        'Abbreviation'  => 'Deep'
+    ],
 ];
 
 $CHAMPIONS = [
